@@ -1,0 +1,64 @@
+2017-9-13
+
+算法是门硬技术，平凡而真知灼见。
+1+1+1=3 和 1+2=3   这要跨越好几步
+
+输入:n个数
+输出:排序后的n个数
+
+冒泡排序 VS 插入排序    
+  n*n        n   
+
+
+
+int[] arr=new int[5];
+
+元素值：{3,6,1,5,7}
+
+1.
+public static void insertion_sort( int[] arr ){
+    for( int i=0; i<arr.length-1; i++ ) {	  //手里牌的张数
+        for( int j=i+1; j>0; j-- ) {  
+            if( arr[j-1] <= arr[j] )
+                break;
+            int temp = arr[j];
+            arr[j] = arr[j-1];
+            arr[j-1] = temp;
+        }
+    }
+}
+
+步骤分析：
+
+执行一次
+外层循环:0  
+内层循环:1
+
+输出：手牌是3
+3,6,1,5,7     arr[0]<arr[1]     break
+
+执行两次： 手牌是6  和 1,5对比
+外层循环:1
+内侧循环:2
+{3,1,6,5,7}   arr[1]<arr[2]     6<1   显然互换           
+
+外层循环:1
+内侧循环:1
+{1,3,6,5,7}   arr[0]<arr[1]     3<1   显然互换    
+
+1.插入模式由下标0,向后1位对比
+2。后1位下标向前对比
+
+
+2.//将arr[i] 插入到arr[0]...arr[i - 1]中
+	public static void insertion_sort(int[] arr) {
+		for (int i = 1; i < arr.length; i++ ) {
+			int temp = arr[i];
+			int j = i - 1;  
+    //如果将赋值放到下一行的for循环内, 会导致在第10行出现j未声明的错误
+			for (; j >= 0 && arr[j] > temp; j-- ) {
+				arr[j + 1] = arr[j];
+			}
+			arr[j + 1] = temp;
+		}
+	}
