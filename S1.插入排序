@@ -62,3 +62,6 @@ public static void insertion_sort( int[] arr ){
 			arr[j + 1] = temp;
 		}
 	}
+	
+	
+插入排序：使用的是增量方法，在排好的数组A[1,j-1]后将A[j]插入，形成排好序的数组A[1,j],然后接着j的循环走，1~j-1,直到排好序
