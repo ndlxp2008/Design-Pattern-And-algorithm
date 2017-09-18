@@ -1,0 +1,68 @@
+类应该对扩展开放，对修改关闭。
+
+解决：类数量爆炸、设计死板，以及基类加入的新功能并不适用于所
+有的子类
+
+装饰者和被装饰对象有相同的超类型
+可以用一个或多个装饰者包裹一个对象
+装饰者可以在所委托被装饰者的行为之前与/或之后，加上自己的行为达到扩展
+对象可以在任何时候被装饰，所以可以在运行时动态地、不限量地用你喜欢的装饰者来装饰对象
+
+
+逻辑思路：
+装饰者：同一个超类型
+被装饰者：同一个超类型，但是被装饰者包裹声明。
+
+装饰者动态的扩展了功能。
+
+
+abstract class Super{
+    abstract void MethodA();
+}
+
+class A extends Super{  //  被装饰者出现
+    void MethodA(){
+      //这个方法前后要被装饰者扩展
+    }
+}
+
+class B extends Super{//也可以作为装饰者
+    
+    void MethodB(){
+    }
+    
+     void MethodA(){
+      //这个方法前后要被装饰者扩展
+      super.MethodA();
+    }
+}
+
+class C extends Super{//装饰者出现，装饰了B类，因为Super super=new B();
+    Super super;
+    public C(Super super){
+      this.super=super;
+    }
+    void MethodC(){
+      beforeMethod();//扩暂
+      super.MethodA();
+      afterMethod();//扩暂
+    }
+}
+
+main{
+    Super super=new B();
+    C c=new C(super);//装饰者运行
+    c.methdC();   
+  
+}
+
+
+装饰者这个模式：好就好在动态的扩展，不用修改之前的类。
+但是在实例化的时候比较麻烦点，会配合其他模式一起操作。
+
+
+
+
+
+
+装饰者模式 ：动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。
