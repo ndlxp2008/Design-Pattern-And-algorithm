@@ -1,0 +1,28 @@
+工厂模式核心要点就是，把实例化对象的过程独立出来，成为一个工厂。
+
+1个工厂简单
+2个以上就得抽象工厂
+
+
+
+
+1.简单工厂，实例化对象的工具类而已
+没有优化扩展，没什么新鲜东西
+
+public class SimpleFactory{
+    public SuperObject  getAInstance(String type){
+      if(type.equals("xxxx"))
+        return new Aclass();
+        ....
+    }
+}
+
+2，静态工厂，实例化对象的工具类而已
+缺点：无法继承改变行为；
+
+public class SimpleFactory{
+    public static AClass getAInstance(){
+        return new Aclass();
+    }
+}
+
